@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Jr-DI-A8y">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Calendar View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CalendarViewController" customModule="World_of_Mind" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mBZ-cA-VS3"/>
+                    <connections>
+                        <segue destination="ByR-L1-wY1" kind="show" identifier="openDaySegue" id="8Dp-O7-SY4"/>
+                        <segue destination="DZx-5X-DxA" kind="show" identifier="addTaskSegue" id="pFs-2A-R9f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1013" y="-555"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="ghI-U6-e6f">
+            <objects>
+                <viewController id="ByR-L1-wY1" customClass="TasksListViewController" customModule="World_of_Mind" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J0k-fF-ocV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QoQ-AM-zeQ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TaskCell" id="uRG-Hx-QS5">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uRG-Hx-QS5" id="bpR-RC-uQN">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ByR-L1-wY1" id="WxW-gr-DkY"/>
+                                    <outlet property="delegate" destination="ByR-L1-wY1" id="pVU-hU-lda"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QoQ-AM-zeQ" firstAttribute="top" secondItem="qB8-Xi-2vH" secondAttribute="top" id="26d-Y8-M5e"/>
+                            <constraint firstItem="QoQ-AM-zeQ" firstAttribute="trailing" secondItem="qB8-Xi-2vH" secondAttribute="trailing" id="S2L-QS-0Vv"/>
+                            <constraint firstAttribute="bottom" secondItem="QoQ-AM-zeQ" secondAttribute="bottom" id="W3b-vk-Fqy"/>
+                            <constraint firstItem="QoQ-AM-zeQ" firstAttribute="leading" secondItem="qB8-Xi-2vH" secondAttribute="leading" id="sSE-w4-khH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qB8-Xi-2vH"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="CHw-OX-cKr">
+                        <barButtonItem key="rightBarButtonItem" title="Add Task" id="etg-RC-Bsy">
+                            <connections>
+                                <segue destination="DZx-5X-DxA" kind="show" identifier="addTaskSegue" id="61Z-DM-ZJS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="QoQ-AM-zeQ" id="LJw-q3-j1f"/>
+                        <segue destination="DZx-5X-DxA" kind="show" identifier="editTaskSegue" id="aSP-Cg-azt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eNz-5r-QAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1850.7246376811595" y="-555.13392857142856"/>
+        </scene>
+        <!--Add Task-->
+        <scene sceneID="Eio-tA-FKK">
+            <objects>
+                <viewController id="DZx-5X-DxA" customClass="AddTaskViewController" customModule="World_of_Mind" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pJF-Sb-app">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="kFG-oZ-QVe"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Task" id="cq1-OR-NeK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="0M0-qg-YYG">
+                            <connections>
+                                <action selector="saveTask:" destination="DZx-5X-DxA" id="RxH-uB-bZJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Vt-Ue-Nru" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2713" y="-671"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="L0f-kB-Ban">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Jr-DI-A8y" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="98H-4S-jFK">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="a9d-hT-XWl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mke-Ka-ogU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134.78260869565219" y="-555.13392857142856"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="aSP-Cg-azt"/>
+    </inferredMetricsTieBreakers>
+</document>
