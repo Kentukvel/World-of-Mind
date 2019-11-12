@@ -46,6 +46,7 @@ class TasksListViewController: UIViewController, UITableViewDelegate, UITableVie
             taskManager.context.delete(arrayOfTasks[indexPath.row])
             arrayOfTasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            taskManager.save()
         }
     }
 
