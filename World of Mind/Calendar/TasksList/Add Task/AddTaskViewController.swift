@@ -16,6 +16,8 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
     private var addTaskViewModel: AddTaskViewModel?
     private var taskManager = TaskManager()
     private var operationsWithDate = DateOperations()
+    private var notificationManager = NotificationManager()
+    private var oldNotificationIdentifier: String?
     var updateTableView: ((Task?) ->())?
     var taskToUpdate: Task?
     var selectedRepeat: Repeat! {
@@ -82,7 +84,8 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
         
         
         if taskToUpdate != nil {
-            
+            //Delete notification with old identifier
+            notificationManager.removeNotidication(withIdentifiers: [oldNotificationIdentifier!])
             addTaskViewModel!.saveTask(withRepeat: selectedRepeat)
             updateTableView!(nil)
             
@@ -118,6 +121,7 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
             
             addTaskViewModel?.setFieldsByTask()
             selectedRepeat = addTaskViewModel?.getRepeat()
+            oldNotificationIdentifier = addTaskViewModel?.createIdentifier()
             
         } else {
             

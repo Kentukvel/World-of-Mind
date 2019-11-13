@@ -49,7 +49,7 @@ class TaskManager {
                     newArray.append(el)
                     
                 case .everyWeek:
-                    if Calendar.current.dateComponents([.year, .month, .weekday], from: date) == Calendar.current.dateComponents([.year, .month, .weekday], from: el.timeOfStart!) {
+                    if Calendar.current.dateComponents([.weekday], from: date) == Calendar.current.dateComponents([.year, .month, .weekday], from: el.timeOfStart!) {
                         newArray.append(el)
                     }
                 case .everyMonth:

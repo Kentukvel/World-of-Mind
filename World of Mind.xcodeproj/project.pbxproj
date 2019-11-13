@@ -16,6 +16,7 @@
 		29ABDF782379F78A00F49C69 /* World_of_Mind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29ABDF762379F78A00F49C69 /* World_of_Mind.xcdatamodeld */; };
 		29ABDF7A2379F78F00F49C69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29ABDF792379F78F00F49C69 /* Assets.xcassets */; };
 		29ABDF7D2379F78F00F49C69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29ABDF7B2379F78F00F49C69 /* LaunchScreen.storyboard */; };
+		29B99FE8237C808700742BEF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B99FE7237C808700742BEF /* NotificationManager.swift */; };
 		29E023752379FA9A000E0684 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E023742379FA9A000E0684 /* CalendarViewController.swift */; };
 		29E023782379FAE9000E0684 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E023772379FAE9000E0684 /* MonthView.swift */; };
 		29E0237B2379FB09000E0684 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E023792379FB09000E0684 /* CalenderView.swift */; };
@@ -37,6 +38,7 @@
 		29ABDF792379F78F00F49C69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29ABDF7C2379F78F00F49C69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29ABDF7E2379F78F00F49C69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29B99FE7237C808700742BEF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		29E023742379FA9A000E0684 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		29E023772379FAE9000E0684 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		29E023792379FB09000E0684 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
@@ -57,13 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		29227FB2237B5CB5006DE80A /* New Group */ = {
+		29227FB2237B5CB5006DE80A /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
 				29227FB0237B5CAB006DE80A /* Repeat.swift */,
+				29B99FE7237C808700742BEF /* NotificationManager.swift */,
 				29227FB5237B61E2006DE80A /* OperationsWithDate.swift */,
 			);
-			path = "New Group";
+			path = "Helper Classes";
 			sourceTree = "<group>";
 		};
 		297BC11C237B6CDD00CB19A5 /* New Group */ = {
@@ -95,7 +98,7 @@
 			children = (
 				29ABDF6F2379F78A00F49C69 /* AppDelegate.swift */,
 				29ABDF732379F78A00F49C69 /* Main.storyboard */,
-				29227FB2237B5CB5006DE80A /* New Group */,
+				29227FB2237B5CB5006DE80A /* Helper Classes */,
 				29E023762379FA9F000E0684 /* Calendar */,
 				29ABDF792379F78F00F49C69 /* Assets.xcassets */,
 				29ABDF7B2379F78F00F49C69 /* LaunchScreen.storyboard */,
@@ -211,6 +214,7 @@
 				29227FB1237B5CAB006DE80A /* Repeat.swift in Sources */,
 				29E02386237B26AB000E0684 /* TaskManager.swift in Sources */,
 				297BC11B237B6CD800CB19A5 /* AddTaskViewModel.swift in Sources */,
+				29B99FE8237C808700742BEF /* NotificationManager.swift in Sources */,
 				29E023752379FA9A000E0684 /* CalendarViewController.swift in Sources */,
 				29E02381237B233A000E0684 /* AddTaskViewController.swift in Sources */,
 				29E0237C2379FB09000E0684 /* WeekdaysView.swift in Sources */,
