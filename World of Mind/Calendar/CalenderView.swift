@@ -15,12 +15,12 @@ struct Colors {
 
 struct Style {
     static var bgColor = UIColor.white
-    static var monthViewLblColor = UIColor.white
-    static var monthViewBtnRightColor = UIColor.white
-    static var monthViewBtnLeftColor = UIColor.white
-    static var activeCellLblColor = UIColor.white
-    static var activeCellLblColorHighlighted = UIColor.black
-    static var weekdaysLblColor = UIColor.white
+    static var monthViewLblColor = UIColor.black
+    static var monthViewBtnRightColor = UIColor.black
+    static var monthViewBtnLeftColor = UIColor.black
+    static var activeCellLblColor = UIColor.black
+    static var activeCellLblColorHighlighted = UIColor.white
+    static var weekdaysLblColor = UIColor.black
     
     static func themeDark(){
         bgColor = Colors.darkGray
@@ -67,12 +67,9 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     
     convenience init(theme: MyTheme) {
         self.init()
+    
+        Style.themeLight()
         
-        if theme == .dark {
-            Style.themeDark()
-        } else {
-            Style.themeLight()
-        }
         
         initializeView()
     }

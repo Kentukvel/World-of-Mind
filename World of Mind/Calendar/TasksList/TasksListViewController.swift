@@ -11,6 +11,10 @@ import CoreData
 
 class TasksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    //MARK: - Variables
+    var selectedDate: Date?
+    var dateOperations = DateOperations()
     var taskManager = TaskManager()
     var arrayOfTasks: [Task] = []
     var selectedTask: Task? {
@@ -19,14 +23,21 @@ class TasksListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 
-    
+    //MARK: - Outlets
+    @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
 
+    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        taskManager.loadTasks(arrayOfTasks: &arrayOfTasks)
+        
+        navigationBar.title = dateOperations.formatDateToString(date: selectedDate!, format: "dd-MM-YYYY")
+        
+        arrayOfTasks = taskManager.loadTasks(byDate: selectedDate!)
+        
         tableView.reloadData()
-        // Do any additional setup after loading the view.
+       
     }
     
     
@@ -63,15 +74,16 @@ class TasksListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addTaskSegue" {
-            print("1")
+           
             if let destination = segue.destination as? AddTaskViewController {
                 destination.updateTableView = {[weak self] task in
                     self?.arrayOfTasks.append(task!)
+                    self?.taskManager.save()
                     self!.tableView.reloadData()
                 }
             }
         } else if segue.identifier == "editTaskSegue" {
-            print("2")
+          
             if let destination = segue.destination as? AddTaskViewController {
                 destination.taskToUpdate = selectedTask
                 destination.updateTableView = { [weak self] task in

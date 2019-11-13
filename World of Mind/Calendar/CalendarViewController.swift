@@ -10,20 +10,30 @@ import UIKit
 
 enum MyTheme {
     case light
-    case dark
 }
 
 class CalendarViewController: UIViewController, CellTapped {
     
+    var selectedDate: Date?
     func cellTapped(date: Date) {
+        selectedDate = date
         performSegue(withIdentifier: "openDaySegue", sender: self)
     }
     
+    var taskManager = TaskManager()
+    
 
-    var theme = MyTheme.dark
+    var theme = MyTheme.light
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        //load task array
+        
+        
+        
+        
         self.title = "My Calender"
         self.navigationController?.navigationBar.isTranslucent=false
         self.view.backgroundColor=Style.bgColor
@@ -36,7 +46,7 @@ class CalendarViewController: UIViewController, CellTapped {
         
         calenderView.delegate = self
         
-        let rightBarBtn = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(rightBarBtnAction))
+        let rightBarBtn = UIBarButtonItem(title: "Add Task", style: .plain, target: self, action: #selector(rightBarBtnAction))
         self.navigationItem.rightBarButtonItem = rightBarBtn
     }
     
@@ -62,10 +72,18 @@ class CalendarViewController: UIViewController, CellTapped {
     }
     
     let calenderView: CalenderView = {
-        let v = CalenderView(theme: MyTheme.dark)
+        let v = CalenderView(theme: MyTheme.light)
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openDaySegue" {
+            if let destination = segue.destination as? TasksListViewController {
+                destination.selectedDate = self.selectedDate
+            }
+        }
+        
+    }
     
 }

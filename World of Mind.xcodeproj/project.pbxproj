@@ -10,6 +10,7 @@
 		29227FB1237B5CAB006DE80A /* Repeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29227FB0237B5CAB006DE80A /* Repeat.swift */; };
 		29227FB4237B5DBB006DE80A /* RepeatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29227FB3237B5DBB006DE80A /* RepeatTableViewController.swift */; };
 		29227FB6237B61E2006DE80A /* OperationsWithDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29227FB5237B61E2006DE80A /* OperationsWithDate.swift */; };
+		297BC11B237B6CD800CB19A5 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BC11A237B6CD800CB19A5 /* AddTaskViewModel.swift */; };
 		29ABDF702379F78A00F49C69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABDF6F2379F78A00F49C69 /* AppDelegate.swift */; };
 		29ABDF752379F78A00F49C69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29ABDF732379F78A00F49C69 /* Main.storyboard */; };
 		29ABDF782379F78A00F49C69 /* World_of_Mind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29ABDF762379F78A00F49C69 /* World_of_Mind.xcdatamodeld */; };
@@ -28,6 +29,7 @@
 		29227FB0237B5CAB006DE80A /* Repeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Repeat.swift; path = ../Repeat.swift; sourceTree = "<group>"; };
 		29227FB3237B5DBB006DE80A /* RepeatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatTableViewController.swift; sourceTree = "<group>"; };
 		29227FB5237B61E2006DE80A /* OperationsWithDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsWithDate.swift; sourceTree = "<group>"; };
+		297BC11A237B6CD800CB19A5 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		29ABDF6C2379F78A00F49C69 /* World of Mind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "World of Mind.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29ABDF6F2379F78A00F49C69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29ABDF742379F78A00F49C69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 			children = (
 				29227FB0237B5CAB006DE80A /* Repeat.swift */,
 				29227FB5237B61E2006DE80A /* OperationsWithDate.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		297BC11C237B6CDD00CB19A5 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				29227FB3237B5DBB006DE80A /* RepeatTableViewController.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -121,7 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				29E02380237B233A000E0684 /* AddTaskViewController.swift */,
-				29227FB3237B5DBB006DE80A /* RepeatTableViewController.swift */,
+				297BC11A237B6CD800CB19A5 /* AddTaskViewModel.swift */,
+				297BC11C237B6CDD00CB19A5 /* New Group */,
 			);
 			path = "Add Task";
 			sourceTree = "<group>";
@@ -199,6 +210,7 @@
 			files = (
 				29227FB1237B5CAB006DE80A /* Repeat.swift in Sources */,
 				29E02386237B26AB000E0684 /* TaskManager.swift in Sources */,
+				297BC11B237B6CD800CB19A5 /* AddTaskViewModel.swift in Sources */,
 				29E023752379FA9A000E0684 /* CalendarViewController.swift in Sources */,
 				29E02381237B233A000E0684 /* AddTaskViewController.swift in Sources */,
 				29E0237C2379FB09000E0684 /* WeekdaysView.swift in Sources */,

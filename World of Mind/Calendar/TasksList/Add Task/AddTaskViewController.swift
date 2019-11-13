@@ -13,12 +13,18 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
 
     
     //MARK: - Variables
+    private var addTaskViewModel: AddTaskViewModel?
     private var taskManager = TaskManager()
-    private var operationsWithDate = DateOper()
+    private var operationsWithDate = DateOperations()
     var updateTableView: ((Task?) ->())?
     var taskToUpdate: Task?
-    var selectedRepeat: Repeat = .never
+    var selectedRepeat: Repeat! {
+        willSet (newValue) {
+            repeatLabel.text = Repeat.getString(fromRepeat: newValue)
+        }
+    }
     
+    let dateFormat = "hh:mm dd-MM-YYYY"
     
     //MARK: - Functions
     private func updateConstraints() {
@@ -26,12 +32,21 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
         tableView.endUpdates()
     }
     
-    private func createNewTask() -> Task {
-        let newTask = Task(context: taskManager.context)
-        
-        return newTask
+    
+    private func presentAlertController(withText text: String) {
+        let ac = UIAlertController(title: "Can't save data", message: text, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        ac.addAction(ok)
+        self.present(ac, animated: true)
     }
     
+    @objc func timeOfEndDatePickerChanged(picker: UIDatePicker) {
+        timeOfEnd.text = operationsWithDate.formatDateToString(date: timeOfEndDatePicker.date, format: nil)
+    }
+    
+    @objc func timeOfStartDatePickerChanged(picker: UIDatePicker) {
+        timeOfStart.text = operationsWithDate.formatDateToString(date: picker.date, format: nil)
+    }
     
     //MARK: - Outlets
     @IBOutlet weak var taskTitle: UITextField!
@@ -54,10 +69,26 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
   
     //MARK: - Actions
     @IBAction func saveTask(_ sender: UIBarButtonItem) {
+        
+        //Check conditions
+        guard taskTitle.text != "" else {
+            presentAlertController(withText: "Please, enter title of task")
+            return
+        }
+        guard timeOfStartDatePicker.date < timeOfEndDatePicker.date else {
+            presentAlertController(withText: "Time of end must be later than time of start")
+            return
+        }
+        
+        
         if taskToUpdate != nil {
             
-        } else {
+            addTaskViewModel!.saveTask(withRepeat: selectedRepeat)
+            updateTableView!(nil)
             
+        } else {
+            let newTask = addTaskViewModel!.createNewTask(withRepeat: selectedRepeat)
+            updateTableView!(newTask)
         }
         
         navigationController?.popViewController(animated: true)
@@ -70,11 +101,24 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
         
         notes.delegate = self
         
+        timeOfStartDatePicker.addTarget(self, action: #selector(timeOfStartDatePickerChanged(picker:)), for: .valueChanged)
+        timeOfEndDatePicker.addTarget(self, action: #selector(timeOfEndDatePickerChanged(picker:)), for: .valueChanged)
+        
+        addTaskViewModel = AddTaskViewModel(taskTitle: taskTitle,
+                                            timeOfStartDatePicker: timeOfStartDatePicker,
+                                            timeOfEndDatePicker: timeOfEndDatePicker,
+                                            remindSwitch: remindSwitch,
+                                            url: url,
+                                            notes: notes,
+                                            selectedTask: taskToUpdate,
+                                            timeOfStartLabel: timeOfStart,
+                                            timeOfEndLabel: timeOfEnd)
         
         if taskToUpdate != nil {
-        
             
-
+            addTaskViewModel?.setFieldsByTask()
+            selectedRepeat = addTaskViewModel?.getRepeat()
+            
         } else {
             
             //Add hour to timeOfEndDatePicker
@@ -83,14 +127,14 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
             operationsWithDate.setDatePickerDate(datePicker: timeOfEndDatePicker, date: date!)
             
             
-            timeOfStart.text = operationsWithDate.formatDateToString(date: timeOfStartDatePicker.date)
-            timeOfEnd.text = operationsWithDate.formatDateToString(date: timeOfEndDatePicker.date)
+            timeOfStart.text = operationsWithDate.formatDateToString(date: timeOfStartDatePicker.date, format: nil)
+            timeOfEnd.text = operationsWithDate.formatDateToString(date: timeOfEndDatePicker.date, format: nil)
 
             
             notes.text = "Notes"
             notes.textColor = UIColor.lightGray
             
-            repeatLabel.text = getString(fromRepeat: selectedRepeat)
+            selectedRepeat = .never
             
         }
         
@@ -132,6 +176,7 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
                 updateConstraints()
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     //MARK: - TextView Delegate
@@ -151,21 +196,7 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
     
     //MARK: - Operations with repeat
     
-    func getString(fromRepeat: Repeat) -> String {
-        
-        switch fromRepeat {
-        case .never:
-            return "Never"
-        case .everyDay:
-            return "Every day"
-        case .everyWeek:
-            return "Every week"
-        case .everyMonth:
-            return "Every month"
-        case .everyYear:
-            return "Every year"
-        }
-    }
+  
     
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -173,7 +204,7 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
             if let destination = segue.destination as? RepeatTableViewController {
                 destination.repeatDidSelect = {[weak self] selectedRepeat in
                     self?.selectedRepeat = selectedRepeat
-                    self?.repeatLabel.text = self!.getString(fromRepeat: selectedRepeat)
+                    
                 }
             }
         }

@@ -74,6 +74,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="navigationBar" destination="CHw-OX-cKr" id="ZDE-rL-6no"/>
                         <outlet property="tableView" destination="QoQ-AM-zeQ" id="LJw-q3-j1f"/>
                         <segue destination="j9Q-Yp-VOy" kind="show" identifier="editTaskSegue" id="uSW-fM-peE"/>
                     </connections>
