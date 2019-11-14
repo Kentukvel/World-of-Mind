@@ -78,7 +78,7 @@ class TasksListViewController: UIViewController, UITableViewDelegate, UITableVie
             if let destination = segue.destination as? AddTaskViewController {
                 destination.updateTableView = {[weak self] task in
                     self?.arrayOfTasks.append(task!)
-                    self?.taskManager.save()
+                    
                     self!.tableView.reloadData()
                 }
             }

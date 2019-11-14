@@ -16,6 +16,10 @@
 		29ABDF782379F78A00F49C69 /* World_of_Mind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29ABDF762379F78A00F49C69 /* World_of_Mind.xcdatamodeld */; };
 		29ABDF7A2379F78F00F49C69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29ABDF792379F78F00F49C69 /* Assets.xcassets */; };
 		29ABDF7D2379F78F00F49C69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29ABDF7B2379F78F00F49C69 /* LaunchScreen.storyboard */; };
+		29AC96FD237CB19100EDD522 /* ToDoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC96FC237CB19100EDD522 /* ToDoListTableViewController.swift */; };
+		29AC9702237CB2B300EDD522 /* ToDoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC9701237CB2B300EDD522 /* ToDoListViewModel.swift */; };
+		29AC9704237CB92B00EDD522 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC9703237CB92B00EDD522 /* ListTableViewController.swift */; };
+		29AC9706237CC90D00EDD522 /* DiaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC9705237CC90D00EDD522 /* DiaryTableViewController.swift */; };
 		29B99FE8237C808700742BEF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B99FE7237C808700742BEF /* NotificationManager.swift */; };
 		29E023752379FA9A000E0684 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E023742379FA9A000E0684 /* CalendarViewController.swift */; };
 		29E023782379FAE9000E0684 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E023772379FAE9000E0684 /* MonthView.swift */; };
@@ -24,6 +28,9 @@
 		29E0237E237A0A3B000E0684 /* TasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0237D237A0A3B000E0684 /* TasksListViewController.swift */; };
 		29E02381237B233A000E0684 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E02380237B233A000E0684 /* AddTaskViewController.swift */; };
 		29E02386237B26AB000E0684 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E02385237B26AB000E0684 /* TaskManager.swift */; };
+		29FA2F0F237CCB7800CA1496 /* diaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FA2F0E237CCB7800CA1496 /* diaryViewModel.swift */; };
+		29FA2F11237CD12900CA1496 /* NewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FA2F10237CD12900CA1496 /* NewRecordViewController.swift */; };
+		29FA2F13237CD7A800CA1496 /* FinanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FA2F12237CD7A800CA1496 /* FinanceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +45,10 @@
 		29ABDF792379F78F00F49C69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29ABDF7C2379F78F00F49C69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29ABDF7E2379F78F00F49C69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29AC96FC237CB19100EDD522 /* ToDoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListTableViewController.swift; sourceTree = "<group>"; };
+		29AC9701237CB2B300EDD522 /* ToDoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewModel.swift; sourceTree = "<group>"; };
+		29AC9703237CB92B00EDD522 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		29AC9705237CC90D00EDD522 /* DiaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DiaryTableViewController.swift; path = ../DiaryTableViewController.swift; sourceTree = "<group>"; };
 		29B99FE7237C808700742BEF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		29E023742379FA9A000E0684 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		29E023772379FAE9000E0684 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
@@ -46,6 +57,9 @@
 		29E0237D237A0A3B000E0684 /* TasksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewController.swift; sourceTree = "<group>"; };
 		29E02380237B233A000E0684 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		29E02385237B26AB000E0684 /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		29FA2F0E237CCB7800CA1496 /* diaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diaryViewModel.swift; sourceTree = "<group>"; };
+		29FA2F10237CD12900CA1496 /* NewRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
+		29FA2F12237CD7A800CA1496 /* FinanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FinanceViewController.swift; path = ../FinanceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,12 +83,12 @@
 			path = "Helper Classes";
 			sourceTree = "<group>";
 		};
-		297BC11C237B6CDD00CB19A5 /* New Group */ = {
+		297BC11C237B6CDD00CB19A5 /* Repeat */ = {
 			isa = PBXGroup;
 			children = (
 				29227FB3237B5DBB006DE80A /* RepeatTableViewController.swift */,
 			);
-			path = "New Group";
+			path = Repeat;
 			sourceTree = "<group>";
 		};
 		29ABDF632379F78A00F49C69 = {
@@ -97,15 +111,54 @@
 			isa = PBXGroup;
 			children = (
 				29ABDF6F2379F78A00F49C69 /* AppDelegate.swift */,
+				29FA2F14237CD7AC00CA1496 /* Finance */,
 				29ABDF732379F78A00F49C69 /* Main.storyboard */,
+				29AC9707237CC91100EDD522 /* Diary */,
 				29227FB2237B5CB5006DE80A /* Helper Classes */,
+				29AC96FE237CB19600EDD522 /* ToDoList */,
 				29E023762379FA9F000E0684 /* Calendar */,
+				29AC9700237CB1D500EDD522 /* Support Files */,
+				29AC96FF237CB1C100EDD522 /* DataModel */,
+			);
+			path = "World of Mind";
+			sourceTree = "<group>";
+		};
+		29AC96FE237CB19600EDD522 /* ToDoList */ = {
+			isa = PBXGroup;
+			children = (
+				29AC96FC237CB19100EDD522 /* ToDoListTableViewController.swift */,
+				29AC9701237CB2B300EDD522 /* ToDoListViewModel.swift */,
+				29AC9703237CB92B00EDD522 /* ListTableViewController.swift */,
+			);
+			path = ToDoList;
+			sourceTree = "<group>";
+		};
+		29AC96FF237CB1C100EDD522 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				29ABDF762379F78A00F49C69 /* World_of_Mind.xcdatamodeld */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		29AC9700237CB1D500EDD522 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
 				29ABDF792379F78F00F49C69 /* Assets.xcassets */,
 				29ABDF7B2379F78F00F49C69 /* LaunchScreen.storyboard */,
 				29ABDF7E2379F78F00F49C69 /* Info.plist */,
-				29ABDF762379F78A00F49C69 /* World_of_Mind.xcdatamodeld */,
 			);
-			path = "World of Mind";
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		29AC9707237CC91100EDD522 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				29AC9705237CC90D00EDD522 /* DiaryTableViewController.swift */,
+				29FA2F0E237CCB7800CA1496 /* diaryViewModel.swift */,
+				29FA2F10237CD12900CA1496 /* NewRecordViewController.swift */,
+			);
+			path = Diary;
 			sourceTree = "<group>";
 		};
 		29E023762379FA9F000E0684 /* Calendar */ = {
@@ -135,9 +188,17 @@
 			children = (
 				29E02380237B233A000E0684 /* AddTaskViewController.swift */,
 				297BC11A237B6CD800CB19A5 /* AddTaskViewModel.swift */,
-				297BC11C237B6CDD00CB19A5 /* New Group */,
+				297BC11C237B6CDD00CB19A5 /* Repeat */,
 			);
 			path = "Add Task";
+			sourceTree = "<group>";
+		};
+		29FA2F14237CD7AC00CA1496 /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				29FA2F12237CD7A800CA1496 /* FinanceViewController.swift */,
+			);
+			path = Finance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,19 +272,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29AC9702237CB2B300EDD522 /* ToDoListViewModel.swift in Sources */,
 				29227FB1237B5CAB006DE80A /* Repeat.swift in Sources */,
 				29E02386237B26AB000E0684 /* TaskManager.swift in Sources */,
 				297BC11B237B6CD800CB19A5 /* AddTaskViewModel.swift in Sources */,
+				29FA2F11237CD12900CA1496 /* NewRecordViewController.swift in Sources */,
+				29AC9704237CB92B00EDD522 /* ListTableViewController.swift in Sources */,
 				29B99FE8237C808700742BEF /* NotificationManager.swift in Sources */,
 				29E023752379FA9A000E0684 /* CalendarViewController.swift in Sources */,
+				29AC9706237CC90D00EDD522 /* DiaryTableViewController.swift in Sources */,
 				29E02381237B233A000E0684 /* AddTaskViewController.swift in Sources */,
 				29E0237C2379FB09000E0684 /* WeekdaysView.swift in Sources */,
+				29FA2F0F237CCB7800CA1496 /* diaryViewModel.swift in Sources */,
 				29227FB6237B61E2006DE80A /* OperationsWithDate.swift in Sources */,
 				29ABDF702379F78A00F49C69 /* AppDelegate.swift in Sources */,
 				29ABDF782379F78A00F49C69 /* World_of_Mind.xcdatamodeld in Sources */,
 				29E0237E237A0A3B000E0684 /* TasksListViewController.swift in Sources */,
+				29AC96FD237CB19100EDD522 /* ToDoListTableViewController.swift in Sources */,
 				29E0237B2379FB09000E0684 /* CalenderView.swift in Sources */,
 				29227FB4237B5DBB006DE80A /* RepeatTableViewController.swift in Sources */,
+				29FA2F13237CD7A800CA1496 /* FinanceViewController.swift in Sources */,
 				29E023782379FAE9000E0684 /* MonthView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,7 +440,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EUV3J8K83;
-				INFOPLIST_FILE = "World of Mind/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/World of Mind/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,7 +458,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EUV3J8K83;
-				INFOPLIST_FILE = "World of Mind/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/World of Mind/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

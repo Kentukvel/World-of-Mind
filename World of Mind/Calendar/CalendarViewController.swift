@@ -33,8 +33,7 @@ class CalendarViewController: UIViewController, CellTapped {
         
         
         
-        
-        self.title = "My Calender"
+    
         self.navigationController?.navigationBar.isTranslucent=false
         self.view.backgroundColor=Style.bgColor
         
@@ -81,6 +80,11 @@ class CalendarViewController: UIViewController, CellTapped {
         if segue.identifier == "openDaySegue" {
             if let destination = segue.destination as? TasksListViewController {
                 destination.selectedDate = self.selectedDate
+            }
+        }
+        if segue.identifier == "addTaskSegue" {
+            if let destination = segue.destination as? TasksListViewController {
+                
             }
         }
         

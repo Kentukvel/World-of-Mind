@@ -91,7 +91,8 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
             
         } else {
             let newTask = addTaskViewModel!.createNewTask(withRepeat: selectedRepeat)
-            updateTableView!(newTask)
+            updateTableView?(newTask)
+            taskManager.save()
         }
         
         navigationController?.popViewController(animated: true)
