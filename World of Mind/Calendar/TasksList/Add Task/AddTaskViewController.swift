@@ -22,6 +22,7 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
     var taskToUpdate: Task?
     var selectedRepeat: Repeat! {
         willSet (newValue) {
+            print(newValue)
             repeatLabel.text = Repeat.getString(fromRepeat: newValue)
         }
     }
@@ -82,7 +83,6 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
             return
         }
         
-        
         if taskToUpdate != nil {
             //Delete notification with old identifier
             notificationManager.removeNotidication(withIdentifiers: [oldNotificationIdentifier!])
@@ -99,11 +99,21 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
         
     }
     
-    //MARK: - Life cycle
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
+
         notes.delegate = self
+        
+        
+        
+        timeOfStartDatePicker.isHidden = true
+        timeOfEndDatePicker.isHidden = true
+        timeOfStartHeight.constant = 0
+        timeOfEndHeight.constant = 0
+        updateConstraints()
+        
+        tableView.estimatedRowHeight = 50
         
         timeOfStartDatePicker.addTarget(self, action: #selector(timeOfStartDatePickerChanged(picker:)), for: .valueChanged)
         timeOfEndDatePicker.addTarget(self, action: #selector(timeOfEndDatePickerChanged(picker:)), for: .valueChanged)
@@ -134,7 +144,7 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
             
             timeOfStart.text = operationsWithDate.formatDateToString(date: timeOfStartDatePicker.date, format: nil)
             timeOfEnd.text = operationsWithDate.formatDateToString(date: timeOfEndDatePicker.date, format: nil)
-
+            
             
             notes.text = "Notes"
             notes.textColor = UIColor.lightGray
@@ -142,16 +152,12 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
             selectedRepeat = .never
             
         }
-        
-        timeOfStartDatePicker.isHidden = true
-        timeOfEndDatePicker.isHidden = true
-        timeOfStartHeight.constant = 0
-        timeOfEndHeight.constant = 0
-        updateConstraints()
-        
-        tableView.estimatedRowHeight = 50
-        
     }
+    //MARK: - Life cycle
+//    override func viewDidLoad() {
+//
+//
+//    }
 
     
     //MARK: - TableView Delegate
@@ -208,6 +214,7 @@ class AddTaskViewController: UITableViewController, UITextViewDelegate {
         if segue.identifier == "chooseRepeatSegue" {
             if let destination = segue.destination as? RepeatTableViewController {
                 destination.repeatDidSelect = {[weak self] selectedRepeat in
+                    //print(selectedRepeat)
                     self?.selectedRepeat = selectedRepeat
                     
                 }

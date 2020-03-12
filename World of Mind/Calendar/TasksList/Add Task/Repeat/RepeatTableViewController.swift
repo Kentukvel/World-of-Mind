@@ -14,7 +14,7 @@ class RepeatTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         repeatDidSelect!(Repeat(rawValue: indexPath.row)!)
-        print(indexPath.row)
+        //print(Repeat(rawValue: indexPath.row)!)
         navigationController?.popViewController(animated: true)
     }
     

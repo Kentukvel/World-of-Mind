@@ -31,7 +31,8 @@ class CalendarViewController: UIViewController, CellTapped {
         
         //load task array
         
-        
+        gradientLayer = CAGradientLayer()
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
         
     
         self.navigationController?.navigationBar.isTranslucent=false
@@ -48,9 +49,19 @@ class CalendarViewController: UIViewController, CellTapped {
         let rightBarBtn = UIBarButtonItem(title: "Add Task", style: .plain, target: self, action: #selector(rightBarBtnAction))
         self.navigationItem.rightBarButtonItem = rightBarBtn
     }
-    
+    //Set gradient
+    var gradientLayer: CAGradientLayer! {
+        didSet {
+            gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+            gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+            gradientLayer.colors = [#colorLiteral(red: 0.05882352941, green: 0.1254901961, blue: 0.1529411765, alpha: 1).cgColor, #colorLiteral(red: 0.1254901961, green: 0.2274509804, blue: 0.262745098, alpha: 1).cgColor, #colorLiteral(red: 0.1725490196, green: 0.3254901961, blue: 0.3921568627, alpha: 1).cgColor]
+            gradientLayer.locations = [0, 0.5, 1]
+        }
+    }
+  
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
         calenderView.myCollectionView.collectionViewLayout.invalidateLayout()
     }
     
@@ -82,11 +93,11 @@ class CalendarViewController: UIViewController, CellTapped {
                 destination.selectedDate = self.selectedDate
             }
         }
-        if segue.identifier == "addTaskSegue" {
-            if let destination = segue.destination as? TasksListViewController {
-                
-            }
-        }
+//        if segue.identifier == "addTaskSegue" {
+//            if let destination = segue.destination as? TasksListViewController {
+//                
+//            }
+//        }
         
     }
     

@@ -10,17 +10,17 @@ import UIKit
 
 struct Colors {
     static var darkGray = #colorLiteral(red: 0.3764705882, green: 0.3647058824, blue: 0.3647058824, alpha: 1)
-    static var darkRed = #colorLiteral(red: 0.5019607843, green: 0.1529411765, blue: 0.1764705882, alpha: 1)
+    static var darkRed = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
 }
 
 struct Style {
     static var bgColor = UIColor.white
-    static var monthViewLblColor = UIColor.black
-    static var monthViewBtnRightColor = UIColor.black
-    static var monthViewBtnLeftColor = UIColor.black
-    static var activeCellLblColor = UIColor.black
-    static var activeCellLblColorHighlighted = UIColor.white
-    static var weekdaysLblColor = UIColor.black
+    static var monthViewLblColor = UIColor.white
+    static var monthViewBtnRightColor = UIColor.white
+    static var monthViewBtnLeftColor = UIColor.white
+    static var activeCellLblColor = UIColor.white
+    static var activeCellLblColorHighlighted = UIColor.gray
+    static var weekdaysLblColor = UIColor.white
     
     static func themeDark(){
         bgColor = Colors.darkGray
@@ -121,12 +121,13 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
             let calcDate = indexPath.row-firstWeekDayOfMonth+2
             cell.isHidden=false
             cell.lbl.text="\(calcDate)"
+            cell.lbl.textColor = UIColor.white
             if calcDate < todaysDate && currentYear == presentYear && currentMonthIndex == presentMonthIndex {
-                cell.isUserInteractionEnabled=false
+                //cell.isUserInteractionEnabled=false
                 cell.lbl.textColor = UIColor.lightGray
             } else {
                 cell.isUserInteractionEnabled=true
-                cell.lbl.textColor = Style.activeCellLblColor
+                //cell.lbl.textColor = Style.activeCellLblColor
             }
         }
         return cell
@@ -152,8 +153,7 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell=collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor=UIColor.clear
-        let lbl = cell?.subviews[1] as! UILabel
-        lbl.textColor = Style.activeCellLblColor
+        //let lbl = cell?.subviews[1] as! UILabel
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

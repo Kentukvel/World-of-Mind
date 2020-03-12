@@ -11,7 +11,7 @@ import CoreData
 
 class TasksListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
+ 
     //MARK: - Variables
     var selectedDate: Date?
     var dateOperations = DateOperations()
@@ -27,19 +27,39 @@ class TasksListViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
 
-    
+  
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        gradientLayer = CAGradientLayer()
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
         
         navigationBar.title = dateOperations.formatDateToString(date: selectedDate!, format: "dd-MM-YYYY")
         
         arrayOfTasks = taskManager.loadTasks(byDate: selectedDate!)
         
         tableView.reloadData()
-       
+        
+        
     }
     
+    
+    
+    //Set gradient
+    var gradientLayer: CAGradientLayer! {
+        didSet {
+            gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+            gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+            gradientLayer.colors = [#colorLiteral(red: 0.05882352941, green: 0.1254901961, blue: 0.1529411765, alpha: 1).cgColor, #colorLiteral(red: 0.1254901961, green: 0.2274509804, blue: 0.262745098, alpha: 1).cgColor, #colorLiteral(red: 0.1725490196, green: 0.3254901961, blue: 0.3921568627, alpha: 1).cgColor]
+            gradientLayer.locations = [0, 0.5, 1]
+        }
+    }
+    override func viewDidLayoutSubviews() {
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+    }
     
     //MARK: - TableView Data Source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,8 +67,8 @@ class TasksListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
-        cell.textLabel?.text = arrayOfTasks[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskTableViewCell
+        taskManager.configureCell(cell: cell, task: arrayOfTasks[indexPath.row])
         return cell
     }
     
@@ -66,7 +86,7 @@ class TasksListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedTask = arrayOfTasks[indexPath.row]
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 

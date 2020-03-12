@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18G1012" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Diary" representedClassName="Diary" syncable="YES" codeGenerationType="class">
+        <attribute name="hasImage" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="mood" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recordText" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,6 +12,12 @@
         <attribute name="cost" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profit" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="month" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Month" inverseName="finance" inverseEntity="Month" syncable="YES"/>
+    </entity>
+    <entity name="Month" representedClassName="Month" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="finance" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Finance" inverseName="month" inverseEntity="Finance" syncable="YES"/>
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,15 +35,16 @@
         <relationship name="toDoList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ToDoTask" inverseName="toDoList" inverseEntity="ToDoTask" syncable="YES"/>
     </entity>
     <entity name="ToDoTask" representedClassName="ToDoTask" syncable="YES" codeGenerationType="class">
-        <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="done" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="toDoList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ToDoList" inverseName="toDoList" inverseEntity="ToDoList" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Diary" positionX="751.8828125" positionY="3496.125" width="128" height="105"/>
-        <element name="Finance" positionX="729" positionY="3645" width="128" height="90"/>
+        <element name="Diary" positionX="751.8828125" positionY="3496.125" width="128" height="135"/>
+        <element name="Finance" positionX="501.67578125" positionY="3707.52734375" width="128" height="120"/>
+        <element name="Month" positionX="693" positionY="3627" width="128" height="73"/>
         <element name="Task" positionX="496.30859375" positionY="3484.54296875" width="128" height="163"/>
         <element name="ToDoList" positionX="794.00390625" positionY="3761.546875" width="128" height="90"/>
-        <element name="ToDoTask" positionX="1002.44921875" positionY="3655.9765625" width="128" height="88"/>
+        <element name="ToDoTask" positionX="1002.44921875" positionY="3655.9765625" width="128" height="90"/>
     </elements>
 </model>

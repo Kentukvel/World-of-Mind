@@ -9,21 +9,66 @@
 import UIKit
 import CoreData
 
-class ToDoListViewModel {
+protocol AddTask {
+    func addTask(withText text: String, forList list: ToDoList, indexPath: IndexPath, oldArray: inout [Any])
+}
+class ToDoListViewModel: AddTask {
     
-    var arrayOfLists: [ToDoList]? {
-        get {
-            let request: NSFetchRequest<ToDoList> = ToDoList.fetchRequest()
-            do {
-                return try context.fetch(request)
-            } catch {
-                print(error)
-            }
-            return []
+    func arrayOfLists() -> [ToDoList]? {
+        
+        let request: NSFetchRequest<ToDoList> = ToDoList.fetchRequest()
+        do {
+            return try context.fetch(request)
+        } catch {
+            print(error)
         }
+        return []
+        
     }
     
+    func updateListWithTasks(taskDidChoosed: ToDoList, index: Int, oldArray: [AnyObject]) -> [AnyObject] {
+        var newArray = oldArray
+        let addTasks = taskDidChoosed.toDoList?.allObjects as! [ToDoTask]
+        newArray.insert(contentsOf: addTasks, at: index + 1)
+        newArray.insert("emptyTask" as AnyObject, at: index + 1 + addTasks.count)
+        return newArray
+    }
     
+    func getTasksByList(list: ToDoList) -> Set<ToDoTask>? {
+        return list.toDoList as? Set<ToDoTask>
+    }
+    
+    func hideTasks(taskDidChoosed: ToDoList, atIndex: Int, oldArray: [AnyObject]) -> [AnyObject] {
+        var newArray = oldArray
+        
+        
+        guard let tasksToRemove = taskDidChoosed.toDoList else {
+                newArray.remove(at: atIndex + 1)
+                return newArray
+        }
+        //            for i in (0..<tasksToRemove.count).reversed() {
+        //                for j in (0..<newArray.count).reversed() {
+//                    if newArray[j] as! NSObject == tasksToRemove[i] {
+//                        newArray.remove(at: j)
+//                        break
+//                    }
+//                }
+//            }
+//        }
+                //Тут может быть баг с удалением не того элемента
+        var i = -1
+        for el in newArray {
+            i += 1
+            if (tasksToRemove.contains(el)) {
+                print(i)
+                newArray.remove(at: i)
+                i -= 1
+            }
+
+        }
+        newArray.remove(at: atIndex + 1)
+        return newArray
+    }
     
     
     //CRUD operations
@@ -35,5 +80,24 @@ class ToDoListViewModel {
         } catch {
             print(error)
         }
+    }
+    
+    func addTask(withText text: String, forList list: ToDoList, indexPath: IndexPath, oldArray: inout [Any]) {
+        let newTask = ToDoTask(context: self.context)
+        newTask.name = text
+        newTask.done = false
+        let tasks = list.toDoList?.mutableCopy() as? NSMutableSet
+        tasks?.add(newTask)
+        list.toDoList = tasks
+        self.save()
+        oldArray.remove(at: indexPath.row)
+        oldArray.insert(newTask, at: indexPath.row)
+        oldArray.insert("emptyTask", at: indexPath.row + 1)
+    }
+    
+    //Function for taskToDoTableViewCell
+    func setCheck(forTask task: ToDoTask) {
+        task.done = !task.done
+        save()
     }
 }

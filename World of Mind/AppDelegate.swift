@@ -19,13 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         notificationCenter.delegate = self
         
-        let options: UNAuthorizationOptions = [.sound, .alert]
+        let options: UNAuthorizationOptions = [.sound, .alert, .badge]
         
         notificationCenter.requestAuthorization(options: options) { (didAllow, error) in
             if !didAllow {
                 print("User has declined notifications")
             }
         }
+        
+        //UIApplication.shared.prefer = .lightContent
         
         return true
     }

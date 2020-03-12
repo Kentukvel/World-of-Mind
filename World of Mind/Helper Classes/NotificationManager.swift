@@ -8,7 +8,6 @@
 
 import Foundation
 
-import Foundation
 import UserNotifications
 
 class NotificationManager {
@@ -17,7 +16,7 @@ class NotificationManager {
     
     func scheduleNotificationForTimeTable(with title: String, at date: Date, repeats: Repeat, identifier: String) {
         
-        print(repeats)
+        
         let content = UNMutableNotificationContent()
         
         content.title = title
@@ -50,6 +49,7 @@ class NotificationManager {
         }
         
     }
+    
     
     func removeNotidication(withIdentifiers identifiers: [String]) {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: identifiers)
