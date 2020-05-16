@@ -12,6 +12,7 @@ import CoreData
 class TaskManager {
     
     var dateOperations = DateOperations()
+    var notificationManager = NotificationManager()
 
     var arrayOfTasks: [Task]? {
         get {
@@ -21,6 +22,25 @@ class TaskManager {
                 array.sort(by: {
                     $0.timeOfStart! < $1.timeOfStart!
                 })
+                CloudManager.fetchDataFromCloud(tasks: array) { (task) in
+                    let newTask = Task(context: self.context)
+                    newTask.name = task.name
+                    newTask.notes = task.notes
+                    newTask.notification = task.notification
+                    newTask.id = task.id
+                    newTask.notificationIdentifier = task.notificationIdentifier
+                    newTask.repeatFrequency = task.repeatFrequency
+                    newTask.timeOfStart = task.timeOfStart
+                    newTask.timeOfEnd = task.timeOfEnd
+                    newTask.url = task.url
+                    //Сделать уведомление
+                    if task.notification {
+                        self.notificationManager.scheduleNotificationForTimeTable(with: task.name, at: task.timeOfStart, repeats: Repeat.getRepeat(fromString: task.repeatFrequency), identifier: task.notificationIdentifier)
+                    }
+                    
+                    array.append(newTask)
+                    self.save()
+                }
                 return array
             } catch {
                 print(error)
@@ -82,6 +102,7 @@ class TaskManager {
                 }
             }
         }
+       
         return newArray
     }
     

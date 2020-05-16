@@ -27,7 +27,9 @@ class DiaryViewModel {
     
     func configure(cell: DiaryRecordTableViewCell, withRecord record: Diary) {
         if record.hasImage {
-            cell.imageOfRecord.image = UIImage(data: record.image!)
+            if record.image != nil {
+                cell.imageOfRecord.image = UIImage(data: record.image!)
+            }
         } else {
             
             cell.imageWidth.constant = 0
@@ -47,6 +49,9 @@ class DiaryViewModel {
         newRecord.hasImage = hasImage
         if hasImage {
             newRecord.image = image
+        }
+        CloudManager.saveDataToCloud(diaryRecord: newRecord, with: UIImage(data: image!)!) { (id) in
+            newRecord.id = id
         }
         save()
         return newRecord

@@ -30,6 +30,10 @@ class FinanceViewModel {
         newRecord.profit = profit
         newRecord.name = name
         
+        CloudManager.saveDataToCloud(finance: newRecord) { (id) in
+            newRecord.id = id
+        }
+        
         let selectedMonth = self.selectedMonth(date: newRecord.date!)
         
         let finances = selectedMonth!.finance?.mutableCopy() as? NSMutableSet
@@ -93,6 +97,21 @@ class FinanceViewModel {
         var newArray = [Finance]()
         for el in financeSet! {
             newArray.append(el as! Finance)
+        }
+        ////!!!!!!!!!!
+        CloudManager.fetchDataFromCloud(finances: newArray) { (finance) in
+            if Calendar.current.dateComponents([.year, .month], from: finance.date) == Calendar.current.dateComponents([.year, .month], from: selectedMonth!.date!) {
+                let newFinance = Finance(context: self.context)
+                newFinance.id = finance.id
+                newFinance.date = finance.date
+                newFinance.name = finance.name
+                newFinance.cost = finance.cost
+                newFinance.profit = finance.profit
+                
+                newArray.append(newFinance)
+                
+                self.save()
+            }
         }
         newArray.sort { (first, second) -> Bool in
             first.date! > second.date!

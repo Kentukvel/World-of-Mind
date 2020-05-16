@@ -26,6 +26,7 @@ class ToDoListViewModel: AddTask {
         
     }
     
+    
     func updateListWithTasks(taskDidChoosed: ToDoList, index: Int, oldArray: [AnyObject]) -> [AnyObject] {
         var newArray = oldArray
         let addTasks = taskDidChoosed.toDoList?.allObjects as! [ToDoTask]
@@ -82,22 +83,31 @@ class ToDoListViewModel: AddTask {
         }
     }
     
+    
+    
     func addTask(withText text: String, forList list: ToDoList, indexPath: IndexPath, oldArray: inout [Any]) {
         let newTask = ToDoTask(context: self.context)
         newTask.name = text
         newTask.done = false
+        newTask.parantID = list.id
         let tasks = list.toDoList?.mutableCopy() as? NSMutableSet
         tasks?.add(newTask)
         list.toDoList = tasks
-        self.save()
+        
         oldArray.remove(at: indexPath.row)
         oldArray.insert(newTask, at: indexPath.row)
         oldArray.insert("emptyTask", at: indexPath.row + 1)
+        
+        CloudManager.saveDataToCloud(toDoTask: newTask, for: list) { (id) in
+            newTask.id = id
+        }
+        self.save()
     }
     
     //Function for taskToDoTableViewCell
     func setCheck(forTask task: ToDoTask) {
         task.done = !task.done
+        CloudManager.updateCloudData(toDoTask: task)
         save()
     }
 }

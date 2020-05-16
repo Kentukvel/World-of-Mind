@@ -23,6 +23,7 @@ class TaskToDoTableViewCell: UITableViewCell {
     
     @IBAction func check(_ sender: UIButton) {
         checkIsOn = !checkIsOn
+        
         toDoListViewModel.setCheck(forTask: selectedTask!)
         setImage()
         print(selectedTask?.done)

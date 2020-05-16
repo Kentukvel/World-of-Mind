@@ -63,6 +63,9 @@ class AddTaskViewModel {
         if newTask.notification {
             notificationManager.scheduleNotificationForTimeTable(with: newTask.name!, at: newTask.timeOfStart!, repeats: withRepeat, identifier: newTask.notificationIdentifier!)
         }
+        CloudManager.saveDataToCloud(task: newTask) { (id) in
+            newTask.id = id
+        }
         return newTask
     }
     
@@ -78,6 +81,7 @@ class AddTaskViewModel {
         if selectedTask!.notification {
             notificationManager.scheduleNotificationForTimeTable(with: selectedTask!.name!, at: selectedTask!.timeOfStart!, repeats: selectedRepeat, identifier: createIdentifier())
         }
+        CloudManager.updateCloudData(task: selectedTask!)
         taskManager.save()
         
     }

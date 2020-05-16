@@ -11,6 +11,7 @@ import UIKit
 class DiaryRecordTableViewCell: UITableViewCell {
 
 
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var imageWidth: NSLayoutConstraint!
     @IBOutlet weak var imageOfRecord: UIImageView!
     @IBOutlet weak var titleOfRecord: UILabel!
@@ -19,7 +20,7 @@ class DiaryRecordTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        bgView.layer.cornerRadius = 5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

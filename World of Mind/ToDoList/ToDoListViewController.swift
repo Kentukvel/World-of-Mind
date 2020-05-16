@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 class ToDoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     //MARK: - Variables
@@ -17,18 +18,16 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     private var arrayOfLists: [Any]!
     private var selectedTasks: Set<Int> = []
     
-    @IBOutlet weak var createList: UIButton!
     @IBOutlet weak var tableView: UITableView!
     //    private var selectedList: ToDoList? {
 //        didSet {
 //           // performSegue(withIdentifier: "toListSegue", sender: self)
 //        }
 //    }
-    @IBAction func createList(_ sender: UIButton) {
-        if createList.titleLabel?.text == "Create list" {
-            addNewList()
-        }
+    @IBAction func createListBarButton(_ sender: UIBarButtonItem) {
+        addNewList()
     }
+    
     
     //Gradient
     var gradientLayer: CAGradientLayer! {
@@ -56,6 +55,9 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
             let newList = ToDoList(context: self.toDoListViewModel.context)
             newList.name = text
             newList.dateOfLastUpdate = Date()
+            CloudManager.saveDataToCloud(toDoList: newList) { (id) in
+                newList.id = id
+            }
             self.arrayOfLists.append(newList)
             self.toDoListViewModel.save()
             self.tableView.reloadData()
@@ -66,11 +68,60 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.present(ac, animated: true, completion: nil)
     }
     
+    var array: [ToDoList]? {
+        didSet {
+            CloudManager.fetchDataFromCloud(toDoLists: array!) { (toDoList) in
+                print("done")
+                let newList = ToDoList(context: self.toDoListViewModel.context)
+                newList.id = toDoList.id
+                newList.dateOfLastUpdate = toDoList.dateOfLastUpdate
+                newList.name = toDoList.name
+                self.arrayOfLists.append(newList)
+                print("done123")
+                self.toDoListViewModel.save()
+                self.tableView.reloadData()
+            }
+        }
+    }
  
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //tableView.contentInsetAdjustmentBehavior = .never
+        
         arrayOfLists = toDoListViewModel.arrayOfLists()
+        print(arrayOfLists.count)
+        self.array = toDoListViewModel.arrayOfLists()!
+            
+        
+        if let array = toDoListViewModel.arrayOfLists() {
+            for el in array {
+                if let tasks = el.toDoList {
+                    var newArray = [ToDoTask]()
+                    for el in tasks {
+                        newArray.append(el as! ToDoTask)
+                    }
+                    
+                    CloudManager.fetchDataFromCloud(toDoTasks: newArray) { (toDoTask) in
+                        if toDoTask.parantID == el.id {
+                            let tasks = el.toDoList?.mutableCopy() as? NSMutableSet
+                            let newTask = ToDoTask(context: self.toDoListViewModel.context)
+                            newTask.done = toDoTask.done
+                            newTask.name = toDoTask.name
+                            newTask.id = toDoTask.id
+                            newTask.parantID = toDoTask.parantID
+                            tasks?.add(newTask)
+                            el.toDoList = tasks
+                            self.toDoListViewModel.save()
+                        }
+                    }
+                }
+            }
+        }
+        
+        
         tableView.estimatedRowHeight = 60
         
         tableView.register(UINib(nibName: "AddTableViewCell", bundle: nil), forCellReuseIdentifier: "AddNewToDoCell")
@@ -80,6 +131,8 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         
         tableView.keyboardDismissMode = .onDrag
+        
+        
     }
     
     
@@ -94,8 +147,8 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let choosenElement = (arrayOfLists[indexPath.row] as AnyObject) as? ToDoList {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoListCell", for: indexPath)
-            cell.textLabel?.text = choosenElement.name
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoListCell", for: indexPath) as! TaskListTableViewCell
+            cell.listLabel.text = choosenElement.name
             return cell
         } else if arrayOfLists[indexPath.row] as? String == "emptyTask" {
             //print("done")
@@ -162,7 +215,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
  
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //selectedList = arrayOfLists[indexPath.row]
+        
         if let selectedList = arrayOfLists[indexPath.row] as? ToDoList {
             if !selectedTasks.contains(indexPath.row) {
                 //selectedTasks.append(indexPath.row)
@@ -184,6 +237,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if let selectedElement = arrayOfLists[indexPath.row] as? ToDoTask {
             if editingStyle == .delete {
+                CloudManager.deleteRecord(recordID: selectedElement.id!, type: .toDoTask)
                 toDoListViewModel.context.delete(selectedElement)
                 toDoListViewModel.save()
                 arrayOfLists.remove(at: indexPath.row)
@@ -192,15 +246,27 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
             }
         } else if let selectedElement = arrayOfLists[indexPath.row] as? ToDoList {
             if editingStyle == .delete {
+                CloudManager.deleteRecord(recordID: selectedElement.id!, type: .toDoList)
                 if selectedTasks.contains(indexPath.row) { //если список открыт
                     selectedTasks.remove(indexPath.row)
                     arrayOfLists = toDoListViewModel.hideTasks(taskDidChoosed: selectedElement, atIndex: indexPath.row, oldArray: arrayOfLists! as [AnyObject])
+                    arrayOfLists.remove(at: indexPath.row)
+                    let selectedTasks = selectedElement.toDoList
+                    for el in selectedTasks! {
+                        if let task = el as? ToDoTask {
+                            print("done")
+                            CloudManager.deleteRecord(recordID: task.id!, type: .toDoTask)
+                        }
+                    }
+                    toDoListViewModel.context.delete(selectedElement)
+                    toDoListViewModel.save()
+                    tableView.reloadData()
+                } else {
                     arrayOfLists.remove(at: indexPath.row)
                     toDoListViewModel.context.delete(selectedElement)
                     toDoListViewModel.save()
                     tableView.reloadData()
                 }
-                
             }
         }
     }

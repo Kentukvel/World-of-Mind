@@ -1,72 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskToDoCell" rowHeight="73" id="KGk-i7-Jjw" customClass="TaskToDoTableViewCell" customModule="World_of_Mind" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaskToDoCell" rowHeight="52" id="KGk-i7-Jjw" customClass="TaskToDoTableViewCell" customModule="World_of_Mind" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="72.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEz-rS-L0Q">
-                        <rect key="frame" x="8" y="0.0" width="304" height="72.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8i2-GW-mod">
-                                <rect key="frame" x="41" y="8" width="255" height="56.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jC6-7j-6rR">
-                                <rect key="frame" x="0.0" y="20" width="33" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="Ksk-cj-8st"/>
-                                    <constraint firstAttribute="width" constant="33" id="eRy-75-5ep"/>
-                                </constraints>
-                                <state key="normal" image="001-circle-outline">
-                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="check:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4NX-fn-Iws"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8i2-GW-mod">
+                        <rect key="frame" x="48" y="10" width="256" height="32"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jC6-7j-6rR">
+                        <rect key="frame" x="16" y="10" width="24" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="8i2-GW-mod" secondAttribute="bottom" constant="8" id="4nm-m4-ybP"/>
-                            <constraint firstItem="jC6-7j-6rR" firstAttribute="top" secondItem="iEz-rS-L0Q" secondAttribute="top" constant="20" id="7jb-JA-8NS"/>
-                            <constraint firstAttribute="trailing" secondItem="8i2-GW-mod" secondAttribute="trailing" constant="8" id="8GP-gn-TOA"/>
-                            <constraint firstItem="8i2-GW-mod" firstAttribute="leading" secondItem="jC6-7j-6rR" secondAttribute="trailing" constant="8" id="Gmi-qg-r09"/>
-                            <constraint firstAttribute="bottom" secondItem="jC6-7j-6rR" secondAttribute="bottom" constant="19.5" id="P5y-Me-Fcq"/>
-                            <constraint firstItem="8i2-GW-mod" firstAttribute="top" secondItem="iEz-rS-L0Q" secondAttribute="top" constant="8" id="U77-I5-Ist"/>
-                            <constraint firstItem="jC6-7j-6rR" firstAttribute="leading" secondItem="iEz-rS-L0Q" secondAttribute="leading" id="Y7x-uN-rql"/>
+                            <constraint firstAttribute="width" constant="24" id="6Xe-9D-TKV"/>
+                            <constraint firstAttribute="height" constant="32" id="Rpe-zQ-uQr"/>
                         </constraints>
-                    </view>
+                        <state key="normal" image="001-circle-outline">
+                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="check:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4NX-fn-Iws"/>
+                        </connections>
+                    </button>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="iEz-rS-L0Q" secondAttribute="bottom" id="bIT-fk-iQf"/>
-                    <constraint firstItem="iEz-rS-L0Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="bJN-0g-8nL"/>
-                    <constraint firstAttribute="trailing" secondItem="iEz-rS-L0Q" secondAttribute="trailing" constant="8" id="caQ-eU-0GZ"/>
-                    <constraint firstItem="iEz-rS-L0Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="zHT-86-2Yb"/>
+                    <constraint firstItem="8i2-GW-mod" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="1oI-UZ-7aB"/>
+                    <constraint firstItem="jC6-7j-6rR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Ltp-kK-jyR"/>
+                    <constraint firstItem="8i2-GW-mod" firstAttribute="leading" secondItem="jC6-7j-6rR" secondAttribute="trailing" constant="8" id="O28-U1-9em"/>
+                    <constraint firstItem="jC6-7j-6rR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SiL-aD-LUX"/>
+                    <constraint firstAttribute="bottom" secondItem="jC6-7j-6rR" secondAttribute="bottom" constant="10" id="bq6-7b-MCq"/>
+                    <constraint firstAttribute="bottom" secondItem="8i2-GW-mod" secondAttribute="bottom" constant="10" id="iuE-qq-dPy"/>
+                    <constraint firstAttribute="trailing" secondItem="8i2-GW-mod" secondAttribute="trailing" constant="16" id="xjl-VO-YUa"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="0.85225813360000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="check" destination="jC6-7j-6rR" id="plY-in-vbl"/>
                 <outlet property="name" destination="8i2-GW-mod" id="ZAe-5s-oCD"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="135.60267857142856"/>
+            <point key="canvasLocation" x="131.8840579710145" y="127.23214285714285"/>
         </tableViewCell>
     </objects>
     <resources>

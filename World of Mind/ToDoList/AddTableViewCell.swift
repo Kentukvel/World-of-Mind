@@ -21,6 +21,7 @@ class AddTableViewCell: UITableViewCell, UITextViewDelegate {
         super.awakeFromNib()
         addText.delegate = self
         addText.isScrollEnabled = false
+       
         
     }
     @IBAction func addButton(_ sender: UIButton) {
@@ -38,6 +39,7 @@ class AddTableViewCell: UITableViewCell, UITextViewDelegate {
         }
     }
     @IBOutlet weak var addText: UITextView!
+    //@IBOutlet weak var bgView: UIView!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -26,6 +26,7 @@ class NewRecordViewController: UIViewController, UITextViewDelegate {
             selectedRecord?.recordName = titleOfRecord.text
             selectedRecord?.recordText = notes.text
             diaryViewModel.save()
+            CloudManager.updateCloudData(diaryRecord: selectedRecord!, with: imageOfRecord.image!)
             updateTable!(nil)
         } else {
             let newRecord = diaryViewModel.saveNewRecord(name: titleOfRecord.text!,
